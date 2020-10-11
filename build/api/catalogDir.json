@@ -1,0 +1,20 @@
+[
+    {
+        "name":"Памятник",
+        "id":"1",
+        "img":"/img/image 4.png",
+        "url":"/catalogSub"
+    },
+    {
+        "name":"Уборка",
+        "id":"2",
+        "img":"/img/image 4.png",
+        "url":"/catalogSub"
+    },
+    {
+        "name":"Другое",
+        "id":"3",
+        "img":"/img/image 4.png",
+        "url":"/catalogSub"
+    }
+]
