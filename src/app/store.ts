@@ -1,18 +1,16 @@
 import { configureStore, Action } from '@reduxjs/toolkit'
 import { ThunkAction } from 'redux-thunk'
+import { routerMiddleware } from 'connected-react-router'
 
+import  {history}  from './rootReducer'
 import rootReducer, { RootState } from './rootReducer'
 
 const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
+  //middleware:[routerMiddleware(history)]
+  middleware: (getDefaultMiddleware) =>  getDefaultMiddleware().concat(routerMiddleware(history)),
 })
 
-if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./rootReducer', () => {
-    const newRootReducer = require('./rootReducer').default
-    store.replaceReducer(newRootReducer)
-  })
-}
 
 export type AppDispatch = typeof store.dispatch
 

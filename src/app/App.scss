@@ -1,0 +1,12 @@
+$theme-colors: (
+    "success": #84BF04,
+);
+$enable-shadows: true;
+
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";
+
+.breadcrumb{
+    background-color:inherit;
+}
