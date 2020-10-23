@@ -6,6 +6,11 @@ export interface ILk {
   id: string
 }
 
+export interface IManeger {
+  id: number
+  name: string
+}
+
 export interface IEvent {
   id: number
   group_id: number
@@ -57,5 +62,12 @@ export async function getEvents() {
   const url = '/api/eventList.json'
   const response = await fetch(url)
   const data: IEvent[] = await response.json()
+  return data
+}
+
+export async function getManagers() {
+  const url = '/api/managers.json'
+  const response = await fetch(url)
+  const data: IManeger[] = await response.json()
   return data
 }

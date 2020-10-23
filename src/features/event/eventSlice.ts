@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getDay, parseJSON } from 'date-fns'
 
-import { IEvent, getEvents } from 'api/CalendulaAPI'
+import { IEvent, getEvents, getManagers, IManeger } from 'api/CalendulaAPI'
 import { AppThunk } from 'app/store'
 
 interface IEventsState {
   groups: IEventsGroups
+  managers: IManeger[]
   loading: boolean
   error: string | null
 }
@@ -33,6 +34,7 @@ export interface IEventsGroups {
 
 const initialState: IEventsState = {
   groups: { groupList: [] } as IEventsGroups,
+  managers: [],
   loading: false,
   error: null,
 }
@@ -75,6 +77,11 @@ const events = createSlice({
       state.loading = false
       state.error = null
     },
+    getManegersSuccess(state, action: PayloadAction<IManeger[]>) {
+      state.managers = action.payload
+      state.loading = false
+      state.error = null
+    },
     createEventSuccess(state, action: PayloadAction<IEventsGroup>) {
       const { groupId } = action.payload
       state.groups.groupList.push(groupId)
@@ -95,12 +102,15 @@ export const {
   updateEventSuccess,
   failure,
   createEventSuccess,
+  getManegersSuccess,
 } = events.actions
 export default events.reducer
 
 export const fetchEvents = (): AppThunk => async (dispatch) => {
   try {
     dispatch(start())
+    const managers = await getManagers()
+    dispatch(getManegersSuccess(managers))
     const events = await getEvents()
     dispatch(getEventsSuccess(events))
   } catch (err) {

@@ -4,7 +4,9 @@ import { useDispatch } from 'react-redux'
 import { parseJSON, format, set, addDays } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { DatePicker, DateChangeCallBack } from 'react-nice-dates'
+import { useSelector } from 'react-redux'
 
+import { RootState } from 'app/rootReducer'
 import { IEventsGroup } from './eventSlice'
 import { updateEventSuccess, createEventSuccess } from './eventSlice'
 
@@ -31,6 +33,7 @@ const tempWeekDay: IWeekDay = {
 }
 
 export function Event(props: IProps) {
+  const managers = useSelector((state: RootState) => state.events.managers)
   const { title, manager, duration, startDate } = props.groupEvent
   const timeEvent = startDate ? format(parseJSON(startDate), 'HH:mm') : ''
   const dispatch = useDispatch()
