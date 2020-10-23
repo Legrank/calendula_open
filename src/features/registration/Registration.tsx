@@ -18,7 +18,6 @@ export function Registration(props:IRegistrationProps) {
 
     const dispatch = useDispatch()
     const [name, setName] = useState('')
-    const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [pas, setPas] = useState('')
     const [rePas, setRePas] = useState('')
@@ -41,16 +40,10 @@ export function Registration(props:IRegistrationProps) {
           <Form.Control type="text" placeholder="Имя" value={name} onChange = {(e:React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}/>
         </Form.Group>
         <Form.Group className='w-75'>
-          <Form.Control type="text" placeholder="Телефон" value={phone} onChange = {(e:React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}/>
-        </Form.Group>
-        <Form.Group className='w-75'>
           <Form.Control type="email" placeholder="E-mail" value={email} onChange = {(e:React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}/>
           <Form.Text className="text-muted">
                 * - обязательно для заполнения
             </Form.Text>
-        </Form.Group>
-        <Form.Group className='w-75'>
-            <Form.Check type="checkbox" label="Я - партнер-исполнитель" className='text-muted' />
         </Form.Group>
         <Form.Group>
           <Button onClick={() => props.regStep(2)} variant='success'>Дальше</Button>
@@ -86,9 +79,7 @@ export function Registration(props:IRegistrationProps) {
                   name,
                   email,
                   pas,
-                  repas: rePas,
-                  phone,
-                  job: false
+                  repas: rePas
               }))
               props.onHide()
               dispatch(push('/lk'))

@@ -1,12 +1,11 @@
-$theme-colors: (
-    "success": #84BF04,
-);
-$enable-shadows: true;
-
-
 /* import bootstrap to set changes */
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
+@import '~react-nice-dates/src/style.scss';
 
-.breadcrumb{
-    background-color:inherit;
+.input {
+  @extend .form-control;
+}
+
+.breadcrumb {
+  background-color: inherit;
 }
